@@ -20,3 +20,30 @@ Feature: Karate Basic Todos
     * def status = response.complete
     * print "Value of ID: " + id
 
+    # Get a single todo
+    Given path id
+    When method get
+    Then status 200
+    And match response == {id: '#(id)', title: '#(title)', complete: #(status) }
+
+    # Create a second todo
+    * def todo =
+    """
+    {
+        "title": "Second",
+        "complete": false
+    }
+    """
+
+    Given request todo
+    And header Content-Type = 'application/json'
+    When method post
+    Then status 200
+    And match response.title == 'Second'
+
+    # Get all todos
+    When method get
+    Then status 200
+    * def firstTask = response[0]
+    * match firstTask.title == 'First'
+    * match firstTask.complete == false
