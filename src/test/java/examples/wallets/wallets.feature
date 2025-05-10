@@ -20,8 +20,14 @@ Feature: wallets api tests
         "hasNextPage": #boolean
       }
       """
-
     And match response.content.data == '#[]'
+
+  Scenario: get a single wallet by id
+    Given path '98A857A7-5AE8-4A9E-84EE-2FAA70BB0EB7'
+    When method get
+    Then status 200
+
+    And match response.content.id == '98A857A7-5AE8-4A9E-84EE-2FAA70BB0EB7'
 
   Scenario: create and verify new wallet
     * def wallet =
