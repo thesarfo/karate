@@ -47,3 +47,15 @@ Feature: Karate Basic Todos
     * def firstTask = response[0]
     * match firstTask.title == 'First'
     * match firstTask.complete == false
+
+    # Update a todo
+    Given path id
+    And request { title: 'First', complete: true }
+    When method put
+    Then status 200
+    And match response.complete == true
+
+    # Delete a todo
+    Given path id
+    When method delete
+    Then status 200
