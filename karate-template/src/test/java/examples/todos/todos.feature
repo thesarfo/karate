@@ -9,8 +9,10 @@ Feature: Karate Basic Todos
     Then status 200
 
   Scenario: Basic todo flow
+    * def taskName = 'First'
+
     # Create a single todo
-    Given request { "title": "First", "complete": false }
+    Given request { "title": '#{taskName}', "complete": false }
     When method post
     Then status 200
     And match response == { id: '#string', title: 'First', complete: false }
@@ -24,7 +26,7 @@ Feature: Karate Basic Todos
     Given path id
     When method get
     Then status 200
-    And match response == {id: '#(id)', title: '#(title)', complete: #(status) }
+    And match response == {id: '#(id)', title: '#{taskName}', complete: #(status) }
 
     # Create a second todo
     * def todo =
@@ -45,12 +47,12 @@ Feature: Karate Basic Todos
     When method get
     Then status 200
     * def firstTask = response[0]
-    * match firstTask.title == 'First'
+    * match firstTask.title == taskName
     * match firstTask.complete == false
 
     # Update a todo
     Given path id
-    And request { title: 'First', complete: true }
+    And request { title: '#{taskName}', complete: true }
     When method put
     Then status 200
     And match response.complete == true
