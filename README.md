@@ -1,5 +1,3 @@
-# Karate API Automation Testing – Quick Reference
-
 This repository is meant to be a personal walkthrough and reference guide for API automation testing using [Karate](https://github.com/karatelabs/karate).
 
 
