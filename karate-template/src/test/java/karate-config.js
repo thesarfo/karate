@@ -6,7 +6,7 @@ function fn() {
   }
   var config = {
     env: env,
-    myVarName: 'someValue'
+    apiUrl: 'http://localhost:8080/api/todos'
   }
   if (env == 'dev') {
     // customize

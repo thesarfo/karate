@@ -23,21 +23,21 @@ Feature: wallets api tests
     And match response.content.data == '#[]'
 
   Scenario: get a single wallet by id
-    Given path '98A857A7-5AE8-4A9E-84EE-2FAA70BB0EB7'
+    Given path '98a857a7-5ae8-4a9e-84ee-2faa70bb0eb7'
     When method get
     Then status 200
 
-    And match response.content.id == '98A857A7-5AE8-4A9E-84EE-2FAA70BB0EB7'
+    And match response.content.id == '98a857a7-5ae8-4a9e-84ee-2faa70bb0eb7'
 
   Scenario: create and verify new wallet
     * def wallet =
       """
       {
-        "name": "Test Wallet",
-        "accountNumber": "0548123457",
+        "name": "Test Walletzzz",
+        "accountNumber": "0548128272",
         "accountScheme": "MTN",
         "type": "Momo",
-        "owner": "0540918498"
+        "owner": "0544777111"
       }
       """
 
@@ -51,11 +51,11 @@ Feature: wallets api tests
       {
         "content": {
           "id": "#notnull",
-          "name": "Test Wallet",
-          "accountNumber": "0548123457",
+          "name": "Test Walletzzz",
+          "accountNumber": "0548128272",
           "accountScheme": "mtn",
           "type": "momo",
-          "owner": "0540918498",
+          "owner": "0544777111",
           "createdAt": "#notnull"
         },
         "message": "Wallet added successfully."

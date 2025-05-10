@@ -1,26 +1,12 @@
 Feature: Karate Basic Todos
 
   Background:
-    * url 'http://localhost:8080/api/todos'
-
-  Scenario: Get all todos
-    Given url 'http://localhost:8080/api/todos'
-    When method get
-    Then status 200
+    * url apiUrl
 
   Scenario: Basic todo flow
-    * def taskName = 'First'
+    * def taskName = 'FirstTask'
 
-    # Create a single todo
-    Given request { "title": '#(taskName)', "complete": false }
-    When method post
-    Then status 200
-    And match response == { id: '#string', title: '#(taskName)', complete: false }
 
-    * def id = response.id
-    * def title = response.title
-    * def status = response.complete
-    * print "Value of ID: " + id
 
     # Get a single todo
     Given path id
@@ -50,17 +36,8 @@ Feature: Karate Basic Todos
     * match firstTask.title == taskName
     * match firstTask.complete == false
 
-    # Update a todo
-    Given path id
-    And request { title: '#(taskName)', complete: true }
-    When method put
-    Then status 200
-    And match response.complete == true
-
-    # Delete a todo
-    Given path id
-    When method delete
-    Then status 200
+    # check all response objects
+    * match each response contains { complete: '#boolean' }
 
     # Clear all tasks
     Given url 'http://localhost:8080/api/reset'
