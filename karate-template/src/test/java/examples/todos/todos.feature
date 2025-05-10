@@ -59,3 +59,9 @@ Feature: Karate Basic Todos
     Given path id
     When method delete
     Then status 200
+
+    # Clear all tasks
+    Given url 'http://localhost:8080/api/reset'
+    When method get
+    Then status 200
+    And match response == { deleted: '#number' }
